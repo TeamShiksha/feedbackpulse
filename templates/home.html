@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %} feedbackpulse | Home {% endblock %}
+
+{% block content %}
+<section class="flex justify-center items-center h-screen">
+    <div class="flex flex-col gap-8 justify-center items-center md:p-6 p-4 rounded-xl shadow-[rgba(255,255,255,0.5)_0_0_22px_0]">
+        <h1 class="md:text-6xl text-5xl font-sans font-extrabold text-white">
+            feedbackpulse
+        </h1>
+        <p class="md:w-[450px] w-[80vw] md:text-lg text-md font-sans text-center shadow-[rgba(255,255,255,0.5)_0_0_2px_0] text-white p-2 rounded-md">
+            Join
+            <a target="_blank" href="https://team.shiksha/" class="underline italic underline-offset-4 font-sembold">
+                Team.shiksha
+            </a>
+            projects, request feedback, provide reviews, and gain insights — all in one place.
+        </p>
+        <a class="group px-4 py-2 md:text-2xl text-xl w-full justify-center flex gap-4 items-center text-bold shadow-[rgba(255,255,255,0.5)_0_0_2px_0] text-white hover:shadow-[rgba(255,255,255,0.5)_0_0_8px_0] transition duration-500 delay-100 rounded-md"
+           href="/home">
+            <img src="{{ url_for('static', filename='icons/github.svg') }}" class="h-7 group-hover:animate-bounce" alt="GitHub Icon" />
+            <span class="font-extrabold">Sign In with GitHub</span>
+        </a>
+        <p class="text-white">
+            Built by
+            <a class="underline italic underline-offset-4" href="https://team.shiksha/" target="_blank">
+                Team.shiksha
+            </a>. Source code available
+            <a class="underline italic underline-offset-4" href="https://github.com/TeamShiksha/feedbackpulse" target="_blank">
+                here
+            </a>.
+        </p>
+    </div>
+</section>
+{% endblock%}
