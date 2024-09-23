@@ -12,7 +12,7 @@ def home():
     """
     Landing page of the app with GitHub OAuth login. This is to
     make sure only teamshiksha github org members can use this
-    web application. 
+    web application.
     """
     return render_template("home.html"), 200
 
