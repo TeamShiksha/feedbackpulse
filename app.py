@@ -16,6 +16,15 @@ def home():
     """
     return render_template("home.html"), 200
 
+@app.route("/dashboard")
+def dashboard():
+    """
+    Landing page of the app with GitHub OAuth login. This is to
+    make sure only teamshiksha github org members can use this
+    web application.
+    """
+    return render_template("dashboard.html"), 200
+
 
 if __name__ == "__main__":
     app.run()
