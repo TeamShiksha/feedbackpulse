@@ -2,7 +2,7 @@
 {% block title %} feedbackpulse | Home {% endblock %}
 
 {% block content %}
-    <div class="backdrop-blur-xl flex flex-col gap-6 justify-center items-center md:p-6 md:py-8 p-4 py-8 rounded-xl md:w-[450px] w-[320px] shadow-[rgba(255,255,255,0.5)_0_0_20px_0] z-10 border-2 border-white/40">
+    <div class="backdrop-blur-xl flex flex-col gap-6 justify-center items-center md:p-6 md:py-8 p-4 py-8 rounded-xl md:w-[450px] w-[320px] z-10 border-2 border-white/40">
         <h1 class="md:text-5xl text-4xl font-sans font-extrabold text-white mb-5">
             feedbackpulse
         </h1>
@@ -13,7 +13,7 @@
             </a>
             projects, request feedback, provide reviews, and gain insights — all in one place.
         </p>
-        <a class="text-center py-2 w-full justify-center flex gap-4 items-center text-bold text-white transition duration-500 delay-200 hover:shadow-[rgba(255,255,255,0.5)_0_0_5px_0] rounded-md border-2 border-white/40"
+        <a class="text-center py-2 w-full justify-center flex gap-4 items-center text-bold text-white transition duration-500 delay-200 hover:shadow-[rgba(255,255,255,0.5)_0_0_12px_0] rounded-md border-2 border-white/40"
            href="/home">
             <img src="{{ url_for('static', filename='icons/github.svg') }}" class="h-7 animate-bounce" alt="GitHub Icon" />
             <span class="font-extrabold text-lg">Sign In with GitHub</span>
@@ -29,10 +29,3 @@
         </p>
     </div>
 {% endblock%}
-
-{% block script %}
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script>
-    particlesJS.load('particles-js', "{{ url_for('static', filename='assets/particle.json') }}");
-</script>
-{% endblock %}
