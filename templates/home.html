@@ -14,8 +14,8 @@
             projects, request feedback, provide reviews, and gain insights — all in one place.
         </p>
         <a class="text-center py-2 w-full justify-center flex gap-4 items-center text-bold text-white transition duration-200 delay-100 hover:shadow-[rgba(255,255,255,0.5)_0_0_12px_0] rounded-md border-2 border-white/40"
-        href="{{ url_for('signin') }}">
-            <img src="{{ url_for('static', filename='icons/github.svg') }}" class="h-7 animate-bounce" alt="GitHub Icon" />
+        href="{{ url_for('auth.signin') }}">
+            <img src="{{ url_for('static', filename='images/github.svg') }}" class="h-7 animate-bounce" alt="GitHub Icon" />
             <span class="font-extrabold text-lg">Sign In with GitHub</span>
         </a>
         <p class="text-white text-center text-md mt-5">
