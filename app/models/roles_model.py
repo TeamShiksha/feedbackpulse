@@ -1,10 +1,15 @@
 import json
 from sqlalchemy.orm import Mapped, Session
-from .base_model import Base, Short, Medium, Intpk
-from .enum_for_models import UserRole
+from app.models.base_model import Base, Short, Medium, Intpk
+from app.models.enum_for_models import UserRole
 
 
 class Role(Base):
+    """
+    Class representation of `roles` table present
+    inside the database. Along with some helper functions.
+    """
+    
     __tablename__ = "roles"
 
     id: Mapped[Intpk]

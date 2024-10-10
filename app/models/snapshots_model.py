@@ -5,6 +5,11 @@ from .base_model import (Base, Verylong, UUIDpk,
 
 
 class Snapshot(Base):
+    """
+    Class representation of `snapshots` table present 
+    inside the database. Along with some helper functions.
+    """
+
     __tablename__ = "snapshots"
 
     id: Mapped[UUIDpk]

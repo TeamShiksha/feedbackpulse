@@ -1,3 +1,7 @@
+"""
+All enum to be used through out the application.
+"""
+
 from enum import Enum
 
 class UserRole(Enum):

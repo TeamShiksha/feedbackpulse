@@ -1,9 +1,14 @@
 import json
 from sqlalchemy.orm import Mapped, Session
-from .base_model import Base, Short, Long, Intpk
-from .enum_for_models import Projects
+from app.models.base_model import Base, Short, Long, Intpk
+from app.models.enum_for_models import Projects
 
 class Project(Base):
+    """
+    Class representation of `projects` table present 
+    inside the database. Along with some helper functions.
+    """
+    
     __tablename__ = "projects"
 
     id: Mapped[Intpk]

@@ -1,9 +1,14 @@
 from typing import Optional
 from sqlalchemy.orm import Mapped
-from .base_model import (Base, Short, UUIDpk, Medium,
+from app.models.base_model import (Base, Short, UUIDpk, Medium,
                         CTimestamp, UTimestamp, Boolean)
 
 class User(Base):
+    """
+    Class representation of `users` table present
+    inside the database. Along with some helper functions.
+    """
+
     __tablename__ = "users"
 
     id: Mapped[UUIDpk]

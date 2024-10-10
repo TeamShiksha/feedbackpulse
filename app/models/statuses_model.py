@@ -4,6 +4,11 @@ from .base_model import Base, Short, Medium, Intpk
 from .enum_for_models import RequestStatus
 
 class Status(Base):
+    """
+    Class representation of `statuses` table present 
+    inside the database. Along with some helper functions.
+    """
+
     __tablename__ = "statuses"
 
     id: Mapped[Intpk]

@@ -3,6 +3,11 @@ from .base_model import (Base, UUIDpk, Long, CTimestamp,
                         UTimestamp, Boolean)
 
 class Request(Base):
+    """
+    Class representation of `requests` table present
+    inside the database. Along with some helper functions.
+    """
+
     __tablename__ = "requests"
 
     id: Mapped[UUIDpk]
