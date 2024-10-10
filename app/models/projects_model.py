@@ -25,7 +25,7 @@ class Project(Base):
         Representation of the model data.
         """
         return f"Project(id={self.id!r}, name={self.name!r}, fullname={self.description!r})"
-    
+
     @staticmethod
     def insert_projects(session: Session) -> None:
         """

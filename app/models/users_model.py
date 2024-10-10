@@ -38,5 +38,3 @@ class User(Base):
                                             back_populates="lead")
     requests: Mapped[List["Request"]] = relationship("Request",\
                                             back_populates="user")
-    
-

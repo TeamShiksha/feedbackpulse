@@ -25,14 +25,13 @@ class Status(Base):
         Representation of the model data.
         """
         return f"Status(id={self.id!r}, name={self.name!r}, fullname={self.description!r})"
-    
+
     @staticmethod
     def insert_statuses(session: Session) -> None:
         """
         Insert statuses and description inside
         table if they do not exists.
         """
-        from app import db
         for status in RequestStatus:
             existing_role = session.query(Status).filter_by(name=status.name).first()
             if not existing_role:

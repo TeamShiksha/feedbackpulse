@@ -31,4 +31,3 @@ class Base(DeclarativeBase):
 
     created_timestamp: Mapped[CTimestamp]
     updated_timestamp: Mapped[UTimestamp]
-
