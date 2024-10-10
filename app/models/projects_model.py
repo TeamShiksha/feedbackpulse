@@ -1,4 +1,5 @@
-from sqlalchemy.orm import Mapped, Session
+from typing import List
+from sqlalchemy.orm import Mapped, Session, relationship
 from app.models.base_model import Base, Short, Long, Intpk
 from app.models.enum_for_models import Projects
 
@@ -14,6 +15,10 @@ class Project(Base):
     id: Mapped[Intpk]
     name: Mapped[Short]
     description: Mapped[Long]
+
+    requests: Mapped[List["Request"]] = relationship("Request", back_populates="project")
+    users: Mapped[List["User"]] = relationship("User", back_populates="project")
+    snapshots: Mapped[List["Snapshot"]] = relationship("Snapshot", back_populates="project")
 
     def __repr__(self) -> str:
         """

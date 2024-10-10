@@ -16,6 +16,8 @@ class Role(Base):
     name: Mapped[Short]
     description: Mapped[Medium]
 
+    users: Mapped[List["User"]] = relationship("User", back_populates="role") # type: ignore
+
     def __repr__(self) -> str:
         """
         Representation of the model data.

@@ -1,4 +1,5 @@
-from sqlalchemy.orm import Mapped, Session
+from typing import List
+from sqlalchemy.orm import Mapped, Session, relationship
 from .base_model import Base, Short, Medium, Intpk
 from .enum_for_models import RequestStatus
 
@@ -13,6 +14,11 @@ class Status(Base):
     id: Mapped[Intpk]
     name: Mapped[Short]
     description: Mapped[Medium]
+
+    snapshots: Mapped[List["Snapshot"]] = relationship("Snapshot",\
+                                                       back_populates="status")
+    requests: Mapped[List["Request"]] = relationship("Request",\
+                                                     back_populates="status")
 
     def __repr__(self) -> str:
         """
