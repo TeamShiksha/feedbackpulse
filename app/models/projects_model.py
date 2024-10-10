@@ -1,14 +1,14 @@
-import json
 from sqlalchemy.orm import Mapped, Session
 from app.models.base_model import Base, Short, Long, Intpk
 from app.models.enum_for_models import Projects
+
 
 class Project(Base):
     """
     Class representation of `projects` table present 
     inside the database. Along with some helper functions.
     """
-    
+
     __tablename__ = "projects"
 
     id: Mapped[Intpk]
@@ -17,14 +17,9 @@ class Project(Base):
 
     def __repr__(self) -> str:
         """
-        Json representation of the model data.
+        Representation of the model data.
         """
-        project = {
-            "id": self.id,
-            "name": self.name,
-            "description": self.description
-        }
-        return json.dumps(project, indent=3)
+        return f"Project(id={self.id!r}, name={self.name!r}, fullname={self.description!r})"
     
     @staticmethod
     def insert_projects(session: Session) -> None:

@@ -18,10 +18,10 @@ Long = Annotated[str, mapped_column(String(200))]
 Verylong = Annotated[str, mapped_column(String(400))]
 Boolean = Annotated[bool, mapped_column(default=False)]
 CTimestamp = Annotated[datetime, mapped_column(nullable=False,\
-                default=func.CURRENT_TIMESTAMP())]
+                default=func.timezone('UTC', func.now()))]
 UTimestamp = Annotated[datetime, mapped_column(nullable=False,\
-                default=func.CURRENT_TIMESTAMP(),\
-                onupdate=func.CURRENT_TIMESTAMP())]
+                default=func.timezone('UTC', func.now()),\
+                onupdate=func.timezone('UTC', func.now()))]
 
 
 class Base(DeclarativeBase):

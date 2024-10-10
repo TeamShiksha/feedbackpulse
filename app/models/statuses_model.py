@@ -1,4 +1,3 @@
-import json
 from sqlalchemy.orm import Mapped, Session
 from .base_model import Base, Short, Medium, Intpk
 from .enum_for_models import RequestStatus
@@ -17,14 +16,9 @@ class Status(Base):
 
     def __repr__(self) -> str:
         """
-        Json representation of the model data.
+        Representation of the model data.
         """
-        project = {
-            "id": self.id,
-            "name": self.name,
-            "description": self.description
-        }
-        return json.dumps(project, indent=3)
+        return f"Status(id={self.id!r}, name={self.name!r}, fullname={self.description!r})"
     
     @staticmethod
     def insert_statuses(session: Session) -> None:
@@ -32,6 +26,7 @@ class Status(Base):
         Insert statuses and description inside
         table if they do not exists.
         """
+        from app import db
         for status in RequestStatus:
             existing_role = session.query(Status).filter_by(name=status.name).first()
             if not existing_role:

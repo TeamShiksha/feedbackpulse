@@ -1,5 +1,5 @@
-import json
-from sqlalchemy.orm import Mapped, Session
+from typing import List
+from sqlalchemy.orm import Mapped, Session, relationship
 from app.models.base_model import Base, Short, Medium, Intpk
 from app.models.enum_for_models import UserRole
 
@@ -9,7 +9,7 @@ class Role(Base):
     Class representation of `roles` table present
     inside the database. Along with some helper functions.
     """
-    
+
     __tablename__ = "roles"
 
     id: Mapped[Intpk]
@@ -18,14 +18,9 @@ class Role(Base):
 
     def __repr__(self) -> str:
         """
-        Json representation of the model data.
+        Representation of the model data.
         """
-        role = {
-            "id": self.id,
-            "name": self.name,
-            "description": self.description
-        }
-        return json.dumps(role, indent=3)
+        return f"Role(id={self.id!r}, name={self.name!r}, fullname={self.description!r})"
 
     @staticmethod
     def insert_roles(session: Session) -> None:
