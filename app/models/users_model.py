@@ -38,3 +38,18 @@ class User(Base):
                                             back_populates="lead")
     requests: Mapped[List["Request"]] = relationship("Request",\
                                             back_populates="user")
+    
+    def __repr__(self):
+        """
+        Representation of the model data.
+        """
+        return (
+            f"<User(id={self.id}, username='{self.username}', email='{self.email}', "
+            f"name='{self.name}', role_id={self.role_id}, project_id={self.project_id}, "
+            f"avatar_url='{self.avatar_url}', linkedin_url='{self.linkedin_url}', "
+            f"github_url='{self.github_url}', twitter_url='{self.twitter_url}', "
+            f"is_headshot={self.is_headshot}, is_deleted={self.is_deleted}, "
+            f"is_teamshiksha_member={self.is_teamshiksha_member}, "
+            f"discord_username='{self.discord_username}', "
+            f"is_fully_verified={self.is_fully_verified})>"
+        )

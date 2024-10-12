@@ -9,6 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_marshmallow import Marshmallow
 from flask_moment import Moment
+from app.routes import auth_bp, public_bp
 from app.models import Base, Role, Status, Project
 from config import config
 
@@ -33,6 +34,10 @@ def create_app(config_name: str = "default"):
     migrate.init_app(app, db)
     marshmallow.init_app(app)
     moment.init_app(app)
+
+    app.register_blueprint(auth_bp, url_prefix= "/auth")
+    app.register_blueprint(public_bp)
+    print(app.url_map)
 
     @app.cli.command()
     def enum():

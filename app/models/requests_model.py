@@ -24,3 +24,15 @@ class Request(Base):
     project: Mapped["Project"] = relationship("Project", back_populates="requests")
     user: Mapped["User"] = relationship("User", back_populates="requests")
     status: Mapped["Status"] = relationship("Status", back_populates="requests")
+
+    def __repr__(self):
+        """
+        Representation of the model data.
+        """
+        return (
+            f"<Request(id={self.id}, project_id={self.project_id}, "
+            f"user_id={self.user_id}, resource='{self.resource}', "
+            f"justification='{self.justification}', number_of_days={self.number_of_days}, "
+            f"status_id={self.status_id}, is_approved={self.is_approved}, "
+            f"is_deleted={self.is_deleted})>"
+        )

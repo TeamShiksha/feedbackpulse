@@ -11,9 +11,8 @@ class Config:
     FLASK_RUN_PORT = os.environ.get("PORT") or 5000
     SECRET_KEY = os.environ.get("SECRET_KEY") or "very secret key"
     SQLALCHEMY_TRACK_MODIFICATIONs = False
-    GITHUB_CLIENT_ID = os.environ.get("GITHUB_CLIENT_ID")
-    GITHUB_CLIENT_SECRET = os.environ.get("GITHUB_CLIENT_SECRET")
-    OAUTHLIB_INSECURE_TRANSPORT = False
+    GITHUB_OAUTH_CLIENT_ID = os.environ.get("GITHUB_OAUTH_CLIENT_ID")
+    GITHUB_OAUTH_CLIENT_SECRET = os.environ.get("GITHUB_OAUTH_CLIENT_SECRET")
 
     @staticmethod
     def init__app(app):
@@ -36,7 +35,7 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     """
-    Development environment specific configurations
+    Testing environment specific configurations
     """
 
     TESTING = True
@@ -48,7 +47,7 @@ class TestingConfig(Config):
 
 class ProductionConfig(Config):
     """
-    Development environment specific configurations
+    Production environment specific configurations
     """
 
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
