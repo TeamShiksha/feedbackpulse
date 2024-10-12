@@ -19,7 +19,7 @@ cd feedbackpulse
 python -m venv venv
 venv\Scripts\activate(Windows, based on your OS please google how to activate virtual environment)
 pip install -r requirements.txt
-flask run
+python app.py
 ```
 
 ## Important
