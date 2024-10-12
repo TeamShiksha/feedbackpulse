@@ -13,6 +13,11 @@ This application allows aspiring developer, designer or product managers to onbo
 3. `set FLASK_APP=app:create_app`
 4. `set FLASK_CONFIG='development'` (Optional by default 'development')
 
+## DB Setup
+1. `flask db migrate` (Will create all the tables)
+2. `flask enum` (Will load the table will required enum tables)
+
+
 ## How to run this project
 
 ```

@@ -17,7 +17,7 @@ db = SQLAlchemy(model_class=Base)
 migrate = Migrate()
 marshmallow = Marshmallow()
 moment = Moment()
-config_name = os.environ.get("FLASK_CONFIG").lower() or "default"
+config_name = os.environ.get("FLASK_CONFIG") or "default"
 
 def create_app():
     """
@@ -26,15 +26,18 @@ def create_app():
     """
 
     app = Flask(__name__)
-    app.config.from_object(config[config_name])
+    app.config.from_object(config[config_name.lower()])
     config[config_name].init__app(app)
     db.init_app(app)
     migrate.init_app(app, db)
     marshmallow.init_app(app)
     moment.init_app(app)
 
-    with app.app_context():
-        db.create_all()
+    @app.cli.command()
+    def enum():
+        """
+        Loads the enum tables in DB
+        """
         Role.insert_roles(db.session)
         Status.insert_statuses(db.session)
         Project.insert_projects(db.session)
