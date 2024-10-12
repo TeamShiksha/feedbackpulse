@@ -1,24 +1,32 @@
-import os
 from flask import Flask
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_marshmallow import Marshmallow
+from flask_moment import Moment
 from app.models import Base, Role, Status, Project
+from config import config
+
 
 db = SQLAlchemy(model_class=Base)
 migrate = Migrate()
-basedir = os.path.abspath(os.path.dirname(__file__))
+marshmallow = Marshmallow()
+moment = Moment()
 
-def create_app():
+
+def create_app(config_name: str):
     """
-    Factory
+    Factory method for creating and configuring the
+    whole flask application
     """
+
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'dev-database.db')
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-    app.config['SQLALCHEMY_ECHO'] = True
+    app.config.from_object(config[config_name])
+    config[config_name].init__app(app)
     db.init_app(app)
     migrate.init_app(app, db)
+    marshmallow.init_app(app)
+    moment.init_app(app)
 
     with app.app_context():
         db.create_all()
