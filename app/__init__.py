@@ -1,3 +1,8 @@
+"""
+Start of the application
+"""
+
+import os
 from flask import Flask
 
 from flask_sqlalchemy import SQLAlchemy
@@ -12,9 +17,9 @@ db = SQLAlchemy(model_class=Base)
 migrate = Migrate()
 marshmallow = Marshmallow()
 moment = Moment()
+config_name = os.environ.get("FLASK_CONFIG").lower() or "default"
 
-
-def create_app(config_name: str):
+def create_app():
     """
     Factory method for creating and configuring the
     whole flask application

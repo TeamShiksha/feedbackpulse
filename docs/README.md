@@ -10,6 +10,8 @@ This application allows aspiring developer, designer or product managers to onbo
 ## Requirements
 1. tailwindcss
 2. python (3.11.1 <= version)
+3. `set FLASK_APP=app:create_app`
+4. `set FLASK_CONFIG='development'` (Optional by default 'development')
 
 ## How to run this project
 
@@ -26,7 +28,7 @@ python app.py
 
 If you are making changes only in html tags and want the app to load automatically on changes, use the command below:
 ```
-flask run --extra-files "templates/your_filename.html"
+python app.py --extra-files "templates/your_filename.html"
 ```
 
 If you are making changes in the tailwind css or using a new class, you will need to run the below commands to make sure the changes are reflecting:
