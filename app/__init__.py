@@ -2,8 +2,8 @@
 Start of the application
 """
 
-import os
 from flask import Flask
+from dotenv import load_dotenv
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -12,14 +12,15 @@ from flask_moment import Moment
 from app.models import Base, Role, Status, Project
 from config import config
 
+load_dotenv()
 
 db = SQLAlchemy(model_class=Base)
 migrate = Migrate()
 marshmallow = Marshmallow()
 moment = Moment()
-config_name = os.environ.get("FLASK_CONFIG") or "default"
 
-def create_app():
+
+def create_app(config_name: str = "default"):
     """
     Factory method for creating and configuring the
     whole flask application

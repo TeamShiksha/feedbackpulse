@@ -7,9 +7,9 @@ class Config:
     Common configuration for all the enviornment
     """
 
-    PORT = 5000
+    FLASK_DEBUG = False
+    FLASK_RUN_PORT = os.environ.get("PORT") or 5000
     SECRET_KEY = os.environ.get("SECRET_KEY") or "very secret key"
-    FLASK_APP = os.environ.get("FLASK_APP") or "app.py"
     SQLALCHEMY_TRACK_MODIFICATIONs = False
     GITHUB_CLIENT_ID = os.environ.get("GITHUB_CLIENT_ID")
     GITHUB_CLIENT_SECRET = os.environ.get("GITHUB_CLIENT_SECRET")
@@ -43,7 +43,7 @@ class TestingConfig(Config):
     SQLALCHEMY_ECHO = True
     OAUTHLIB_INSECURE_TRANSPORT = True
     SQLALCHEMY_DATABASE_URI = os.environ.get("TEST_DATABASE_URL") or \
-        "sqlite:///" + os.path.join(basedir, 'test-dev.sqlite')
+        "sqlite:///" + os.path.join(basedir, 'data-test.sqlite')
 
 
 class ProductionConfig(Config):
