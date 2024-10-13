@@ -1,6 +1,6 @@
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from .base_model import Base, UUIDpk, Long, Boolean
+from .base_model import Base, UUIDpk, Short, Long, Boolean
 
 
 class Request(Base):
@@ -14,7 +14,7 @@ class Request(Base):
     id: Mapped[UUIDpk]
     project_id: Mapped[int] = mapped_column(ForeignKey("projects.id"))
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
-    resource: Mapped[str]
+    resource: Mapped[Short]
     justification: Mapped[Long]
     number_of_days: Mapped[int]
     status_id: Mapped[int] = mapped_column(ForeignKey("statuses.id"))

@@ -1,8 +1,8 @@
-"""empty message
+"""initial
 
-Revision ID: 02e2acbe09a1
+Revision ID: 299e412cf24c
 Revises: 
-Create Date: 2024-10-12 18:53:59.170141
+Create Date: 2024-10-14 01:06:53.675006
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '02e2acbe09a1'
+revision = '299e412cf24c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -46,7 +46,7 @@ def upgrade():
     sa.UniqueConstraint('name')
     )
     op.create_table('users',
-    sa.Column('id', sa.String(), nullable=False),
+    sa.Column('id', sa.String(length=30), nullable=False),
     sa.Column('username', sa.String(length=30), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=True),
     sa.Column('email', sa.String(length=30), nullable=False),
@@ -71,10 +71,10 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
     op.create_table('requests',
-    sa.Column('id', sa.String(), nullable=False),
+    sa.Column('id', sa.String(length=30), nullable=False),
     sa.Column('project_id', sa.Integer(), nullable=False),
-    sa.Column('user_id', sa.String(), nullable=False),
-    sa.Column('resource', sa.String(), nullable=False),
+    sa.Column('user_id', sa.String(length=30), nullable=False),
+    sa.Column('resource', sa.String(length=30), nullable=False),
     sa.Column('justification', sa.String(length=200), nullable=False),
     sa.Column('number_of_days', sa.Integer(), nullable=False),
     sa.Column('status_id', sa.Integer(), nullable=False),
@@ -85,12 +85,13 @@ def upgrade():
     sa.ForeignKeyConstraint(['project_id'], ['projects.id'], ),
     sa.ForeignKeyConstraint(['status_id'], ['statuses.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('resource')
     )
     op.create_table('snapshots',
-    sa.Column('id', sa.String(), nullable=False),
-    sa.Column('user_id', sa.String(), nullable=False),
-    sa.Column('lead_id', sa.String(), nullable=False),
+    sa.Column('id', sa.String(length=30), nullable=False),
+    sa.Column('user_id', sa.String(length=30), nullable=False),
+    sa.Column('lead_id', sa.String(length=30), nullable=False),
     sa.Column('project_id', sa.Integer(), nullable=False),
     sa.Column('description', sa.String(length=400), nullable=False),
     sa.Column('comment', sa.String(length=400), nullable=True),

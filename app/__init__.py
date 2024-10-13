@@ -11,6 +11,7 @@ from flask_marshmallow import Marshmallow
 from flask_moment import Moment
 from app.routes import auth_bp, public_bp
 from app.models import Base, Role, Status, Project
+from app.utils import load_enums
 from config import config
 
 load_dotenv()
@@ -39,13 +40,6 @@ def create_app(config_name: str = "default"):
     app.register_blueprint(public_bp)
     print(app.url_map)
 
-    @app.cli.command()
-    def enum():
-        """
-        Loads the enum tables in DB
-        """
-        Role.insert_roles(db.session)
-        Status.insert_statuses(db.session)
-        Project.insert_projects(db.session)
+    app.cli.add_command(load_enums)
 
     return app

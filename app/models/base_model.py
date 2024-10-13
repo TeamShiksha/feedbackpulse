@@ -11,7 +11,7 @@ from sqlalchemy.orm import DeclarativeBase, mapped_column, Mapped
 
 
 Intpk = Annotated[int, mapped_column(primary_key=True, autoincrement=True)]
-UUIDpk = Annotated[str, mapped_column(primary_key=True, default=lambda: str(uuid4()))]
+UUIDpk = Annotated[str, mapped_column(String(30), primary_key=True, default=lambda: str(uuid4()))]
 Short = Annotated[str, mapped_column(String(30), unique=True)]
 Medium = Annotated[str, mapped_column(String(100))]
 Long = Annotated[str, mapped_column(String(200))]

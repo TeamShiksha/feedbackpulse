@@ -29,7 +29,7 @@ class DevelopmentConfig(Config):
     FLASK_DEBUG = True
     SQLALCHEMY_ECHO = True
     OAUTHLIB_INSECURE_TRANSPORT = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DEV_DATABASE_URL") or \
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DEV_SQLALCHEMY_DATABASE_URI") or \
         "sqlite:///" + os.path.join(basedir, 'data-dev.sqlite')
 
 
@@ -41,7 +41,7 @@ class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_ECHO = True
     OAUTHLIB_INSECURE_TRANSPORT = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get("TEST_DATABASE_URL") or \
+    SQLALCHEMY_DATABASE_URI = os.environ.get("TEST_SQLALCHEMY_DATABASE_URI") or \
         "sqlite:///" + os.path.join(basedir, 'data-test.sqlite')
 
 
@@ -50,7 +50,7 @@ class ProductionConfig(Config):
     Production environment specific configurations
     """
 
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
 
 
 config = {
