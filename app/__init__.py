@@ -9,8 +9,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_marshmallow import Marshmallow
 from flask_moment import Moment
-from app.routes import auth_bp, public_bp
-from app.models import Base, Role, Status, Project
+from app.routes import auth_bp, public_bp, private_bp
+from app.models import Base
 from app.utils import load_enums
 from config import config
 
@@ -38,6 +38,7 @@ def create_app(config_name: str = "default"):
 
     app.register_blueprint(auth_bp, url_prefix= "/auth")
     app.register_blueprint(public_bp)
+    app.register_blueprint(private_bp)
     print(app.url_map)
 
     app.cli.add_command(load_enums)

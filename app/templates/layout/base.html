@@ -6,11 +6,64 @@
     <link href="{{url_for('static', filename='css/output.css')}}" rel="stylesheet">
     <title>{% block title %}feedbackpulse{% endblock %}</title>
 </head>
-<body>
-    <main class="flex justify-center items-center h-screen bg-black">
-        <div id="particles-js" class="absolute w-full h-full"></div>
-        {% block content %} {% endblock %}
-    </main>
+<body class="bg-black">
+    {% if request.endpoint != 'public.home' %}
+    <header class="py-4 px-6 shadow-[rgba(255,255,255,0.5)_0_0_8px_0]">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="{{ url_for('public.home') }}" class="text-4xl font-bold tracking-tight text-white">
+                feedbackpulse
+            </a>
+            <nav class="hidden md:flex space-x-6">
+                {% set nav_items = [
+                    ('private.dashboard', 'Dashboard'),
+                    ('private.projects', 'Projects'),
+                    ('private.snapshots', 'Snapshots'),
+                    ('private.resources', 'Resources')
+                ] %}
+                {% for route, label in nav_items %}
+                        <a href="{{ url_for(route) }}" 
+                           class="text-white text-lg {% if request.endpoint == route %}border-b-2 border-white{% endif %}">
+                            {{ label }}
+                        </a>
+                {% endfor %}
+            </nav>
+            <button class="md:hidden text-white hover:text-zinc-300" onclick="toggleMobileMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden mt-4">
+            {% for route, label in nav_items %}
+                        <a href="{{ url_for(route) }}" 
+                           class="block py-2 text-center text-white text-lg">
+                            {{ label }}
+                        </a>
+            {% endfor %}
+        </div>
+    </header>
+    {% endif %}
+    {% block content %} {% endblock %}
     {% block script %} {% endblock %}
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('hidden');
+        }
+    
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+    
+        window.onclick = function(event) {
+            if (!event.target.matches('.rounded-full')) {
+                const dropdown = document.getElementById('userDropdown');
+                if (!dropdown.classList.contains('hidden')) {
+                    dropdown.classList.add('hidden');
+                }
+            }
+        }
+    </script>
 </body>
 </html>
