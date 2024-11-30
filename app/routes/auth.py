@@ -18,10 +18,10 @@ def signin():
         flash('Signed in successfully!', 'success')
     else:
         flash('Failed to fetch email.', 'error')
-    return redirect(url_for('home'))
+    return redirect(url_for('public.home'))
 
 @auth_bp.route("/signout")
 def signout():
     github_bp.token = None
     flash('Signed out successfully!', 'info')
-    return redirect(url_for('home'))
+    return redirect(url_for('public.home'))
